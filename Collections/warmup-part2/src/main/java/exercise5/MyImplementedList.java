@@ -102,14 +102,12 @@ public class MyImplementedList<E> implements Iterable<E> {
     // f) create the int indexOf(Object o_O) method that returns the position in the data structure of the object o_O
     // if exists, otherwise return -1
     public int indexOf(Object o_O) {
-        int idx = -1;
         for (int i = 0; i < size; i++) {
             if (elementData[i].equals(o_O)) {
-                idx = i;
-                break;
+                return i;
             }
         }
-        return idx;
+        return -1;
     }
 
     // g) create the int lastIndexOf(Object o_O) method that returns the last position in the data structure of the object o_O
@@ -155,7 +153,7 @@ public class MyImplementedList<E> implements Iterable<E> {
 
         Object prev = elementData[index];
 
-        for (int i = index; i < (size + 1); i++) {
+        for (int i = index; i < (size - 1); i++) {
             elementData[i] = elementData[i + 1];
         }
         size--;
@@ -190,10 +188,7 @@ public class MyImplementedList<E> implements Iterable<E> {
         }
 
         public boolean hasNext() {
-            if ((this.idx) >= size) {
-                return false;
-            }
-            return true;
+            return (this.idx >= size) ? false : true;
         }
 
         public E next() {
@@ -208,8 +203,8 @@ public class MyImplementedList<E> implements Iterable<E> {
             for (int i = removeIdx; i < (size - 1); i++) {
                 elementData[i] = elementData[i + 1];
             }
-            idx--;
             removeIdx = -1;
+            idx--;
             size--;
         }
     }

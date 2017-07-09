@@ -26,14 +26,15 @@ public class MyHashMap {
     }
 
     public String get(String key) {
+        int bucket = hash(key);
         if (key == null) {
-            for (MyEntry entry : buckets.get(0)) {
+            for (MyEntry entry : buckets.get(bucket)) {
                 if (entry.getKey() == key) {
                     return entry.getValue();
                 }
             }
         } else {
-            for (MyEntry myEntry : buckets.get(hash(key))) {
+            for (MyEntry myEntry : buckets.get(bucket)) {
                 if (myEntry.getKey().equals(key)) {
                     return myEntry.getValue();
                 }
@@ -45,18 +46,16 @@ public class MyHashMap {
     public void put(String key, String value) {
         // first see if key is already in the map
         MyEntry entry = null;
-        int position;
+        int bucket = hash(key);
         if (key == null) {
-            position = 0;
-            for (MyEntry myEntry : buckets.get(position)) {
+            for (MyEntry myEntry : buckets.get(bucket)) {
                 if (myEntry.getKey() == key) {
                     entry = myEntry;
                     break;
                 }
             }
         } else {
-            position = hash(key);
-            for (MyEntry myEntry : buckets.get(position)) {
+            for (MyEntry myEntry : buckets.get(bucket)) {
                 if (myEntry.getKey().equals(key)) {
                     entry = myEntry;
                     break;
@@ -64,10 +63,11 @@ public class MyHashMap {
             }
         }
 
-        // key not found in map
+        // key not found in map; add new entry
         if (entry == null) {
             entry = new MyEntry(key, value);
-            buckets.get(position).add(entry);
+            buckets.get(bucket).add(entry);
+            return;
         }
 
         // key found in map; set the new value
@@ -85,31 +85,32 @@ public class MyHashMap {
     }
 
     public Collection<String> values() {
-        Collection<String> col = new ArrayList<String>();
+        Collection<String> values = new ArrayList<String>();
         for (LinkedList<MyEntry> bucket : buckets) {
             for (MyEntry myEntry : bucket) {
-                col.add(myEntry.getValue());
+                values.add(myEntry.getValue());
             }
         }
 
-        return col;
+        return values;
     }
 
     public String remove(String key) {
         // Returns the value associated with the key removed from the map or null if the key wasn't found
-        int position = (key == null) ? 0 : hash(key);
+        int bucket = hash(key);
         MyEntry entry;
         String result = null;
 
-        Iterator<MyEntry> it = buckets.get(position).iterator();
+        Iterator<MyEntry> it = buckets.get(bucket).iterator();
         while (it.hasNext()) {
             entry = it.next();
-            if ((key == null) && (entry.getKey() == null)) {
-                result = entry.getValue();
-                it.remove();
-                break;
-            }
-            if (entry.getKey().equals(key)) {
+            if (entry.getKey() == null) {
+                if (key == null) {
+                    result = entry.getValue();
+                    it.remove();
+                    break;
+                }
+            } else if (entry.getKey().equals(key)) {
                 result = entry.getValue();
                 it.remove();
                 break;
@@ -157,15 +158,16 @@ public class MyHashMap {
 
     public boolean isEmpty() {
         for (LinkedList<MyEntry> bucket : buckets) {
-            if (bucket.isEmpty()) {
-                return true;
+            if (!bucket.isEmpty()) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     private int hash(String key) {
+        if (key == null)    return 0;
         return Math.abs(key.hashCode() % BUCKET_ARRAY_SIZE);
     }
 

@@ -44,13 +44,17 @@ public class MyResizableHashMap<K, V> {
      * The number of entries stored in the Map.
      */
     private int size;
+
+    /**
+     * The capacity of the Map
+     */
     private int capacity;
 
     public MyResizableHashMap() {
         // Initialize buckets list
-        buckets = new Node[DEFAULT_BUCKET_ARRAY_SIZE];
-        size = 0;
         capacity = DEFAULT_BUCKET_ARRAY_SIZE;
+        buckets = new Node[capacity];
+        size = 0;
     }
 
     private void resize() {
@@ -63,7 +67,6 @@ public class MyResizableHashMap<K, V> {
         for (MyEntry myEntry : temp) {
             put((K) myEntry.getKey(), (V) myEntry.getValue());
         }
-
     }
 
     public V get(K key) {
@@ -89,23 +92,20 @@ public class MyResizableHashMap<K, V> {
             resize();
         }
 
-        int position = hash(key);
-
-        if (buckets[hash(key)] == null) {
+        int bucket = hash(key);
+        if (buckets[bucket] == null) {
             MyEntry<K, V> entry = new MyEntry<K, V>(key, value);
-            Node<K, V> node = new Node<K, V>(entry, position, null);
-            buckets[hash(key)] = node;
+            Node<K, V> node = new Node<K, V>(entry, bucket, null);
+            buckets[bucket] = node;
             size++;
             return;
         }
 
         // search for the key in buckets
-        Node<K, V> node = buckets[hash(key)];
-        boolean first = true;
-        do {
-            if (!first) {
-                node = node.getNextElement();
-            }
+        Node<K, V> node = buckets[bucket];
+        Node<K, V> previous = null;
+
+        while (node != null) {
             if (key == null) {
                 if (node.getEntry().getKey() == key) {
                     node.getEntry().setValue(value);
@@ -117,13 +117,14 @@ public class MyResizableHashMap<K, V> {
                     return;
                 }
             }
-            first = false;
-        } while (node.getNextElement() != null);
+            previous = node;
+            node = node.getNextElement();
+        }
 
         // key was not found; create a new entry
         MyEntry<K, V> entry = new MyEntry<K, V>(key, value);
-        Node<K, V> newNode = new Node<K, V>(entry, hash(key), null);
-        node.nextElement = newNode;
+        Node<K, V> newNode = new Node<K, V>(entry, bucket, null);
+        previous.nextElement = newNode;
         size++;
 
         return;
@@ -151,7 +152,6 @@ public class MyResizableHashMap<K, V> {
 
     public V remove(K key) {
         // Returns the value associated with the key removed from the map or null if the key wasn't found
-
         V value = null;
         Node<K, V> last = null;
         if (key == null) {
@@ -191,7 +191,14 @@ public class MyResizableHashMap<K, V> {
     }
 
     public boolean containsValue(V value) {
-        return values().contains(value);
+        for (int i = 0; i < capacity; i++) {
+            for (Node<K, V> node = buckets[i]; node != null; node = node.nextElement) {
+                if (node.getEntry().getValue().equals(value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public int size() {
@@ -217,11 +224,7 @@ public class MyResizableHashMap<K, V> {
     }
 
     public boolean isEmpty() {
-        for (Node<K, V> bucket : buckets) {
-            if (bucket != null)
-                return false;
-        }
-        return true;
+        return (size == 0);
     }
 
     public int hash(K key) {

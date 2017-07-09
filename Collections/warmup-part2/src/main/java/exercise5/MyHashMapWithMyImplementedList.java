@@ -26,7 +26,7 @@ public class MyHashMapWithMyImplementedList {
 
     public String get(String key) {
         if (key == null) {
-            for (MyEntry entry : buckets.get(0)) {
+            for (MyEntry entry : buckets.get(hash(key))) {
                 if (entry.getKey() == key) {
                     return entry.getValue();
                 }
@@ -44,18 +44,16 @@ public class MyHashMapWithMyImplementedList {
     public void put(String key, String value) {
         // first see if key is already in the map
         MyEntry entry = null;
-        int position;
+        int bucket = hash(key);
         if (key == null) {
-            position = 0;
-            for (MyEntry myEntry : buckets.get(position)) {
+            for (MyEntry myEntry : buckets.get(bucket)) {
                 if (myEntry.getKey() == key) {
                     entry = myEntry;
                     break;
                 }
             }
         } else {
-            position = hash(key);
-            for (MyEntry myEntry : buckets.get(position)) {
+            for (MyEntry myEntry : buckets.get(bucket)) {
                 if (myEntry.getKey().equals(key)) {
                     entry = myEntry;
                     break;
@@ -66,11 +64,11 @@ public class MyHashMapWithMyImplementedList {
         // key not found in map
         if (entry == null) {
             entry = new MyEntry(key, value);
-            buckets.get(position).add(entry);
+            buckets.get(bucket).add(entry);
+        } else {
+            // key found in map; set the new value
+            entry.setValue(value);
         }
-
-        // key found in map; set the new value
-        entry.setValue(value);
     }
 
     public Set<String> keySet() {
@@ -84,32 +82,33 @@ public class MyHashMapWithMyImplementedList {
     }
 
     public Collection<String> values() {
-        Collection<String> col = new ArrayList<String>();
+        Collection<String> values = new ArrayList<String>();
         for (LinkedList<MyEntry> bucket : buckets) {
             for (MyEntry myEntry : bucket) {
-                col.add(myEntry.getValue());
+                values.add(myEntry.getValue());
             }
         }
 
-        return col;
+        return values;
     }
 
 
     public String remove(String key) {
         // Returns the value associated with the key removed from the map or null if the key wasn't found
-        int position = (key == null) ? 0 : hash(key);
+        int position = hash(key);
         MyEntry entry;
         String result = null;
 
         Iterator<MyEntry> it = buckets.get(position).iterator();
         while (it.hasNext()) {
             entry = it.next();
-            if ((key == null) && (entry.getKey() == null)) {
-                result = entry.getValue();
-                it.remove();
-                break;
-            }
-            if (entry.getKey().equals(key)) {
+            if (entry.getKey() == null) {
+                if (key == null) {
+                    result = entry.getValue();
+                    it.remove();
+                    break;
+                }
+            } else if (entry.getKey().equals(key)) {
                 result = entry.getValue();
                 it.remove();
                 break;
@@ -120,13 +119,18 @@ public class MyHashMapWithMyImplementedList {
     }
 
     public boolean containsKey(String key) {
-        String value = get(key);
-        if (value == null)  return false;
-        return true;
+        return (get(key) == null) ? false : true;
     }
 
     public boolean containsValue(String value) {
-        return values().contains(value);
+        for (LinkedList<MyEntry> bucket : buckets) {
+            for (MyEntry myEntry : bucket) {
+                if (myEntry.getValue().equals(value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public int size() {
@@ -157,15 +161,16 @@ public class MyHashMapWithMyImplementedList {
 
     public boolean isEmpty() {
         for (LinkedList<MyEntry> bucket : buckets) {
-            if (bucket.isEmpty()) {
-                return true;
+            if (!bucket.isEmpty()) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     private int hash(String key) {
+        if (key == null)    return 0;
         return Math.abs(key.hashCode() % BUCKET_ARRAY_SIZE);
     }
 

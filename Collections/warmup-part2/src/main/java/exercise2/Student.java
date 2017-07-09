@@ -39,7 +39,7 @@ public class Student {
         return s;
     }
 
-    // TODO Exercise 2 c) Override the equals() method
+    // Exercise 2 c) Override the equals() method
     @Override
     public boolean equals(Object o) {
         // Exercise 2 c1) Check if the current instance is the same instance as the one from Object o
