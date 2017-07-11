@@ -6,7 +6,7 @@
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_131\jre\bin"/>
     <property name="java.vm.version" value="25.131-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\claudiu.marinescu\Desktop\maven example\myapp"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\claudiu.marinescu\Desktop\JavaDocs\Maven_UnitTesting\maven example\myapp"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\claudiu.marinescu\Desktop\maven example\myapp"/>
+    <property name="user.dir" value="C:\Users\claudiu.marinescu\Desktop\JavaDocs\Maven_UnitTesting\maven example\myapp"/>
     <property name="java.runtime.version" value="1.8.0_131-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_131\jre\lib\endorsed"/>
@@ -31,6 +31,7 @@
     <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.4\plugins\maven\lib\maven3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_131\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\apache-maven-3.5.0\bin;C:\Users\claudiu.marinescu\AppData\Local\Microsoft\WindowsApps;C:\Users\claudiu.marinescu\AppData\Roaming\npm;."/>
+    <property name="sun.awt.enableExtraMouseButtons" value="true"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
