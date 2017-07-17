@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="derby">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/design-patterns-java-creational/2-design-patterns-java-creational-m2-singleton-exercise-files/singleton/derby.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/design-patterns-java-creational/2-design-patterns-java-creational-m2-singleton-exercise-files/singleton/derbyclient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
