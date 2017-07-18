@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/Downloads/design-patterns-java-creational/2-design-patterns-java-creational-m2-singleton-exercise-files/singleton/derby.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/design-patterns-java-creational/2-design-patterns-java-creational-m2-singleton-exercise-files/singleton/derbyclient.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.4/lib/twitter4j-core-4.0.4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
