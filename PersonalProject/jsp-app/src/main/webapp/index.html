@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<h2>Enjoy Zero To Hero</h2>
+
+<div>
+
+    <form id="form1" name="hello" action="hello" method="post">
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user"/>
+    </form>
+
+    <button onclick="httpGet()">
+        Get number of employees...
+    </button>
+
+    <span id="nbEmp"></span>
+</div>
+
+<script>
+    function httpGet()
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/employees/count", false ); // false for synchronous request
+        xmlHttp.send();
+        document.getElementById('nbEmp').innerHTML = xmlHttp.responseText;
+        //alert(xmlHttp.responseText);
+        return xmlHttp.responseText;
+    }
+</script>
+
+</body>
+</html>
