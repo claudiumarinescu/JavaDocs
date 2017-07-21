@@ -1,4 +1,4 @@
-package main.java.ro.teamnet.zth.controllers;
+package teamnet.zth.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

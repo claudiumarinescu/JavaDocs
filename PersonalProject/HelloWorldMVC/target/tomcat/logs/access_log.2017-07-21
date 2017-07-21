@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [21/Jul/2017:10:33:39 +0300] "GET / HTTP/1.1" 404 949 http-bio-6969-exec-2 99
+0:0:0:0:0:0:0:1 - - [21/Jul/2017:10:33:43 +0300] "GET /welcome HTTP/1.1" 404 965 http-bio-6969-exec-3 3
+0:0:0:0:0:0:0:1 - - [21/Jul/2017:10:33:54 +0300] "GET /CrunchifySpringMVCTutorial/welcome HTTP/1.1" 404 1019 http-bio-6969-exec-4 2
+0:0:0:0:0:0:0:1 - - [21/Jul/2017:10:34:42 +0300] "GET /CrunchifySpringMVCTutorial HTTP/1.1" 404 1003 http-bio-6969-exec-6 2

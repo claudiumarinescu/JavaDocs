@@ -1,2 +1,11 @@
-C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\AppConfig.java
-C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\MyController.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\controller\ProjectController.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\controller\JobController.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\config\PersistenceConfig.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\controller\HomePageController.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\dao\EmployeeDao.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\dao\EmployeeRepository.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\service\EmployeeService.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\controller\TaskController.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\model\Job.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\controller\EmployeeController.java
+C:\Users\claudiu.marinescu\Desktop\JavaDocs\PersonalProject\WebMVC\src\main\java\ro\teamnet\model\Employee.java
