@@ -3,25 +3,23 @@ package ro.teamnet.model;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by Claudiu.Marinescu on 7/21/2017.
- */
 @Entity
 @Table(name="EMPLOYEES")
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column (name="EMPLOYEE_ID")
     private Long id;
     @Column (name="FIRST_NAME")
     private String firstName;
     @Column (name="LAST_NAME")
     private String lastName;
-    @Column (name="JOB_ID")
+    @ManyToOne
+    @JoinColumn(name="JOB_ID")
     private Job job;
     @Column (name="MANAGER_ID")
-    private Employee manager;
+    private Long manager;
     @Column (name="HIRE_DATE")
     @Temporal(TemporalType.DATE)
     private Date hireDate;
@@ -57,12 +55,29 @@ public class Employee {
     public void setJob(Job job) {
         this.job = job;
     }
+//
+//    public Employee getManager() {
+//        return manager;
+//    }
+//
+//    public void setManager(Employee manager) {
+//        this.manager = manager;
+//    }
 
-    public Employee getManager() {
+
+//    public Long getJob() {
+//        return job;
+//    }
+//
+//    public void setJob(Long job) {
+//        this.job = job;
+//    }
+
+    public Long getManager() {
         return manager;
     }
 
-    public void setManager(Employee manager) {
+    public void setManager(Long manager) {
         this.manager = manager;
     }
 

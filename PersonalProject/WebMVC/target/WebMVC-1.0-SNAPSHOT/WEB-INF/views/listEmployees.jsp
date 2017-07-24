@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <c:forEach items="list" var="employee">
+                <c:forEach items="${list}" var="employee">
                     <tr>
                         <td>${employee.id}</td>
                         <td>${employee.firstName}</td>
@@ -34,17 +34,17 @@
                         <td>${employee.manager}</td>
                         <td>${employee.hireDate}</td>
                         <td>
-                            <spring:url value="/employee/delete/${employee.id}" var="deleteURL" />
-                            <a href="${deleteURL}">Delete</a>
+                            <a href="/employees/delete/${employee.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
+</div>
 
-
-
+<div align="center">
+    <button class="btn btn-success" onclick='window.location.href = "/"'>Home</button>
 </div>
 
 <script type="text/javascript" src="../../js/controller.js"></script>

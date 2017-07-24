@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body" align="left">
 
-        <form:form action="/employee/save" method="POST" modelAttribute="employeeForm">
+        <form:form action="/employees/save" method="POST" modelAttribute="employee">
             <form:hidden path="id"/>
             <div class="row">
                 <div class="col-lg-6">
@@ -56,9 +56,9 @@
             <div class="row" align="center">
                 <div class="container-fluid">
                     <div>
-                        <button type="submit" class="btn btn-default" >Save</button>
-                        <button class="btn btn-default" >Reset</button>
-                        <button class="btn btn-default" >Back</button>
+                        <button type="submit" class="btn btn-default">Save</button>
+                        <button type="reset" class="btn btn-default" >Reset</button>
+                        <button type="button"  class="btn btn-default" onclick='window.location.href = "/"'>Home</button>
                     </div>
                 </div>
             </div>

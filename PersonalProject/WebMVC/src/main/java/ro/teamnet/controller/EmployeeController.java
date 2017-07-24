@@ -5,19 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ro.teamnet.model.Employee;
+import ro.teamnet.model.Job;
 import ro.teamnet.service.EmployeeService;
 
 import java.util.List;
 
-/**
- * Created by Claudiu.Marinescu on 7/21/2017.
- */
+
 @Controller
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @RequestMapping("/actions")
     @ResponseBody
@@ -29,7 +32,7 @@ public class EmployeeController {
 
     @RequestMapping("/list")
     public ModelAndView getAllEmployees() {
-        ModelAndView model = new ModelAndView("/WEB-INF/views/listEmployees.jsp");
+        ModelAndView model = new ModelAndView("listEmployees");
         List<Employee> list = employeeService.listAllEmployees();
 
         model.addObject("list", list);
@@ -38,19 +41,26 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView saveEmployee(@ModelAttribute("employeeForm") Employee employee) {
-        employeeService.saveOrUpdate(employee);
+    public ModelAndView saveEmployee(@ModelAttribute("employee") Employee employee) {
+        System.out.println(employee.getJob());
+//        List<Job> jobs = employeeService.listAllJobs();
+//        if (!jobs.isEmpty()) {
+//            employee.setJob(jobs.get(0));
+//        }
+//        System.out.println(employee.getJob());
+//        employeeService.saveOrUpdate(employee);
         return new ModelAndView("redirect:/employees/list");
     }
 
     @RequestMapping("/add")
     public ModelAndView addOneEmployee() {
         ModelAndView model = new ModelAndView("addEmployee");
-        model.addObject("employeeForm", new Employee());
+        model.addObject("employee", new Employee());
+        model.addObject("jobs", employeeService.listAllJobs());
         return model;
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete/{id}")
     public ModelAndView deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee(id);
         return new ModelAndView("redirect:/employees/list");

@@ -1,41 +1,21 @@
 package ro.teamnet.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import ro.teamnet.dao.EmployeeRepository;
 import ro.teamnet.model.Employee;
+import ro.teamnet.model.Job;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by Claudiu.Marinescu on 7/21/2017.
- */
-@Service("employeeService")
-@Transactional
-public class EmployeeService {
 
-    private EmployeeRepository employeeRepository;
+public interface EmployeeService {
 
-    @Autowired
-    public void setEmpRepository(EmployeeRepository empRepository) {
-        this.employeeRepository = empRepository;
-    }
+    List<Employee> listAllEmployees();
 
-    public List<Employee> listAllEmployees() {
-        return employeeRepository.listAllEmployees();
-    }
+    List<Job> listAllJobs();
 
-    public void saveOrUpdate(Employee employee) {
-        employeeRepository.saveOrUpdate(employee);
-    }
+    void saveOrUpdate(Employee employee);
 
-    public Employee findEmployeeById(Long id) {
-        return employeeRepository.findEmployeeById(id);
-    }
+    Employee findEmployeeById(Long id);
 
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteEmployee(id);
-    }
+    void deleteEmployee(Long id);
 
 }
