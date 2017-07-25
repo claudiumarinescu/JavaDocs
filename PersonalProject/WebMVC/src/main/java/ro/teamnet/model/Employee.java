@@ -18,8 +18,9 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name="JOB_ID")
     private Job job;
-    @Column (name="MANAGER_ID")
-    private Long manager;
+    @ManyToOne
+    @JoinColumn(name="MANAGER_ID")
+    private Employee manager;
     @Column (name="HIRE_DATE")
     @Temporal(TemporalType.DATE)
     private Date hireDate;
@@ -55,31 +56,22 @@ public class Employee {
     public void setJob(Job job) {
         this.job = job;
     }
-//
-//    public Employee getManager() {
-//        return manager;
-//    }
-//
-//    public void setManager(Employee manager) {
-//        this.manager = manager;
-//    }
 
-
-//    public Long getJob() {
-//        return job;
-//    }
-//
-//    public void setJob(Long job) {
-//        this.job = job;
-//    }
-
-    public Long getManager() {
+    public Employee getManager() {
         return manager;
     }
 
-    public void setManager(Long manager) {
+    public void setManager(Employee manager) {
         this.manager = manager;
     }
+
+//    public Long getManager() {
+//        return manager;
+//    }
+//
+//    public void setManager(Long manager) {
+//        this.manager = manager;
+//    }
 
     public Date getHireDate() {
         return hireDate;

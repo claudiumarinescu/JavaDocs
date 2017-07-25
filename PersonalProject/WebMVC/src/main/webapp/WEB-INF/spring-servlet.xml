@@ -24,6 +24,13 @@
     <context:property-placeholder location="database.properties" />
 
     <bean id="employeeRepository" class="ro.teamnet.dao.EmployeeRepositoryImpl"/>
+    <bean id="jobRepository" class="ro.teamnet.dao.JobRepositoryImpl"/>
+    <bean id="taskRepository" class="ro.teamnet.dao.ProjectRepositoryImpl"/>
+    <bean id="projectRepository" class="ro.teamnet.dao.ProjectRepositoryImpl"/>
+
     <bean id="employeeService" class="ro.teamnet.service.EmployeeServiceImpl"/>
+    <bean id="jobService" class="ro.teamnet.service.JobServiceImpl"/>
+    <bean id="taskService" class="ro.teamnet.service.TaskServiceImpl"/>
+    <bean id="projectService" class="ro.teamnet.service.ProjectServiceImpl"/>
 
 </beans>

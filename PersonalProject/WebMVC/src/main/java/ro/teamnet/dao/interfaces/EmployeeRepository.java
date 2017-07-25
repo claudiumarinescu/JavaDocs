@@ -1,16 +1,12 @@
-package ro.teamnet.service;
+package ro.teamnet.dao.interfaces;
 
 import ro.teamnet.model.Employee;
-import ro.teamnet.model.Job;
 
 import java.util.List;
 
-
-public interface EmployeeService {
+public interface EmployeeRepository {
 
     List<Employee> listAllEmployees();
-
-    List<Job> listAllJobs();
 
     void saveOrUpdate(Employee employee);
 

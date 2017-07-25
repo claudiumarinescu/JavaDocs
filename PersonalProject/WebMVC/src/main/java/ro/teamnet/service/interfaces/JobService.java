@@ -1,13 +1,11 @@
-package ro.teamnet.dao;
+package ro.teamnet.service.interfaces;
 
 import ro.teamnet.model.Job;
 
 import java.util.List;
 
-/**
- * Created by Claudiu.Marinescu on 7/24/2017.
- */
-public interface JobRepository {
+
+public interface JobService {
 
     List<Job> listAllJobs();
 

@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ro.teamnet.dao.interfaces.JobRepository;
 import ro.teamnet.model.Job;
 
 import java.util.List;

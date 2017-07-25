@@ -7,77 +7,82 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 </head>
-<body>
-
-<div align="center" >
-<div class="panel panel-default" style="margin: 50px; align-self: center; width: 70%">
-    <div class="panel-heading" align="center">
-        <h2 class="panel-title">Add employee</h2>
+<body style="background-color: ghostwhite">
+<nav class="navbar navbar-inverse bg-inverse" role="navigation">
+    <div class="container-fluid navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">PM App</a>
     </div>
-    <div class="panel-body" align="left">
-
-        <form:form action="/employees/save" method="POST" modelAttribute="employee">
-            <form:hidden path="id"/>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="firstName">First Name:</label>
-                        <form:input id="firstName" path="firstName"/>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="lastName">Last Name:</label>
-                        <form:input id="lastName" path="lastName"/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label >Job:</label>
-                        <%--<spring:bind path="employee.job">--%>
-                            <form:select path="job">
-                                <c:forEach items="${jobs}" var="joba">
-                                    <form:option value="${joba}">${joba.title}</form:option>
-                                </c:forEach>
-                            </form:select>
-                        <%--</spring:bind>--%>
-                        <%--<form:input id="jobId" path="job" modelAttribute="jobz"/>&ndash;%&gt;--%>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="managerId">Manager:</label>
-                        <form:input id="managerId" path="manager"/>
-                    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/employees">Employees</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </ul>
+    </div>
+</nav>
+<br/><br/>
+<div class="container" align="center" style="width: 50%; text-align: center; font-size: medium">
+    <form:form action="/employees/save" method="POST" modelAttribute="employee">
+        <form:hidden path="id"/>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="firstName" class="col-sm-2 control-label">FirstName:</label>
+                <div class="col-sm-10">
+                    <form:input id="firstName" path="firstName" required="required" cssStyle="width: 90%"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="hireDate">Hire Date:</label>
-                        <form:input id="hireDate" path="hireDate"/>
-                    </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-2 control-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <form:input id="lastName" path="lastName" required="required" cssStyle="width: 90%"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="jobInput" class="col-sm-2 control-label">Job:</label>
+                <div class="col-sm-10">
+                    <select name="jobID" id="jobInput" style="width: 90%">
+                        <c:forEach items="${jobs}" var="job">
+                            <option value="${job.id}">${job.title}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="managerInput" class="col-sm-2 control-label">Manager:</label>
+                <div class="col-sm-10">
+                    <select name="managerID" id="managerInput" style="width: 90%">
+                        <c:forEach items="${employees}" var="emp">
+                            <option value="${emp.id}">${emp.firstName} ${emp.lastName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="hireDate" class="col-sm-2 control-label">Hire Date:</label>
+                <div class="col-sm-10">
+                    <form:input id="hireDate" path="hireDate" required="required" cssStyle="width: 90%"/>
                 </div>
             </div>
             <br>
-            <div class="row" align="center">
-                <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
                     <div>
-                        <button type="submit" class="btn btn-default">Save</button>
-                        <button type="reset" class="btn btn-default" >Reset</button>
-                        <button type="button"  class="btn btn-default" onclick='window.location.href = "/"'>Home</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="button"  class="btn btn-primary" onclick='location.href="/employees/list"'>Back</button>
                     </div>
                 </div>
             </div>
-        </form:form>
-
-    </div>
+        </div>
+    </form:form>
 </div>
-</div>
-
-<script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
